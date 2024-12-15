@@ -83,12 +83,12 @@ fn main() {
 
     let ctv_tx_out = [
         TxOut {
-            value: amount_out_2,
-            script_pubkey: anchor_addr.script_pubkey(),
-        },
-        TxOut {
             value: amount_out_1,
             script_pubkey: ctv_spend_address.script_pubkey(),
+        },
+        TxOut {
+            value: amount_out_2,
+            script_pubkey: anchor_addr.script_pubkey(),
         },
     ];
 
@@ -100,8 +100,9 @@ fn main() {
     let ctv_contract_address = Address::p2tr_tweaked(ctv_tr_spend_info.output_key(), NETWORK);
     println!("\nCTV address: {}", ctv_contract_address);
 
-    #[cfg(not(feature = "signet"))]
-    let _ = bitcoin_rpc.generate_to_address(101, &ctv_spend_address);
+    //enable this if you need to fund your regtest wallet
+    // #[cfg(not(feature = "signet"))]
+    // let _ = bitcoin_rpc.generate_to_address(101, &ctv_spend_address);
 
     let txid_result = bitcoin_rpc.send_to_address(
         &ctv_contract_address,
@@ -192,7 +193,7 @@ fn main() {
         input: vec![TxIn {
             previous_output: OutPoint {
                 txid: parent_txid,
-                vout: 0,
+                vout: 1,
             },
             ..Default::default()
         }],
