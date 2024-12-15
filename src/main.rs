@@ -16,30 +16,38 @@ use bitcoin::{
 };
 use bitcoincore_rpc::{Auth, Client, RpcApi};
 
-const OP_CTV: Opcode = OP_NOP4;
-
 // https://bitcoinops.org/en/bitcoin-core-28-wallet-integration-guide/
 // mainnet: bc1pfeessrawgf
 // regtest: bcrt1pfeesnyr2tx
 // testnet: tb1pfees9rn5nz
 
-#[cfg(feature = "signet")]
-const FEE_ANCHOR_ADDR: &str = "tb1pfees9rn5nz";
-#[cfg(feature = "signet")]
-const NETWORK: Network = Network::Signet;
-#[cfg(feature = "signet")]
-const PORT: &str = "38332";
-#[cfg(feature = "signet")]
-//change this to your own signet wallet name
-const WALLET_NAME: &str = "siggy";
+const OP_CTV: Opcode = OP_NOP4;
+//this is the min dust amount required to anchor the transaction
+const ANCHOR_AMOUNT: u64 = 240;
 
-const FEE_ANCHOR_ADDR: &str = "bcrt1pfeesnyr2tx";
 const NETWORK: Network = Network::Regtest;
 const PORT: &str = "18443";
-const WALLET_NAME: &str = "simple_ctv";
 
-//this is the min dut amount required to anchor the transaction
-const ANCHOR_AMOUNT: u64 = 240;
+// Regtest-specific configuration
+#[cfg(feature = "regtest")]
+mod config {
+    pub const FEE_ANCHOR_ADDR: &str = "bcrt1pfeesnyr2tx";
+    pub const WALLET_NAME: &str = "simple_ctv";
+}
+
+// Signet-specific configuration
+#[cfg(feature = "signet")]
+mod config {
+    pub const FEE_ANCHOR_ADDR: &str = "tb1pfees9rn5nz";
+    pub const NETWORK: Network = Network::Signet;
+    pub const PORT: &str = "38332";
+    //set your own signet wallet name here
+    pub const WALLET_NAME: &str = "siggy";
+}
+
+//wen mainnet config
+
+use config::*;
 
 fn main() {
     let bitcoin_rpc_user = env::var("BITCOIN_RPC_USER").expect("BITCOIN_RPC_USER not set");
@@ -100,9 +108,8 @@ fn main() {
     let ctv_contract_address = Address::p2tr_tweaked(ctv_tr_spend_info.output_key(), NETWORK);
     println!("\nCTV address: {}", ctv_contract_address);
 
-    //enable this if you need to fund your regtest wallet
-    // #[cfg(not(feature = "signet"))]
-    // let _ = bitcoin_rpc.generate_to_address(101, &ctv_spend_address);
+    #[cfg(not(feature = "signet"))]
+    let _ = bitcoin_rpc.generate_to_address(101, &ctv_spend_address);
 
     let txid_result = bitcoin_rpc.send_to_address(
         &ctv_contract_address,
@@ -232,6 +239,7 @@ fn create_ctv_address(ctv_hash: [u8; 32]) -> Result<TaprootSpendInfo> {
     Ok(taproot_spend_info)
 }
 
+// thanks @bennyhodl https://github.com/bennyhodl/dlcat
 fn calc_ctv_hash(outputs: &[TxOut], timeout: Option<u32>) -> [u8; 32] {
     let mut buffer = Vec::new();
     buffer.extend(3_i32.to_le_bytes()); // version

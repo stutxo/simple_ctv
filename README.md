@@ -30,5 +30,5 @@ cargo run --features "signet"
 ./bitcoind -regtest -minrelaytxfee=0 -fallbackfee=0.0001
 ```
 ```
-cargo run
+cargo run --features "regtest"
 ```
