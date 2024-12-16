@@ -86,7 +86,7 @@ Shoutout to **supertestnet**, **bennyhodl**, **glozow** and **Jeremy Rubin** for
 - [bump fee with extra input or child transaction: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/86896275fb71d4e3b84d1edeeacb90f7c4ccf77ee3a29e66d7effff4bb0682fb)
 
 
-#### Spending Using Just a 1p1c Package
+### Spending Using Just a 1p1c Package
 
 https://x.com/1440000bytes/status/1868375944832156108
 
