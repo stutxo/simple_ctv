@@ -21,7 +21,7 @@ Here is a simple example of spending a transaction from a CTV (CHECKTEMPLATEVERI
 ## Requirements
 
 - Rust https://www.rust-lang.org/tools/install
-- Bitcoin Inquisition node https://github.com/bitcoin-inquisition/bitcoin
+- Bitcoin Inquisition 28.0 node https://github.com/bitcoin-inquisition/bitcoin/releases/tag/v28.0-inq
 
 ## Setup
 
