@@ -1,8 +1,7 @@
-use anyhow::Result;
-
 use bitcoin::{
     consensus::Encodable,
     hashes::{sha256, Hash},
+    io::Error,
     key::{Keypair, Secp256k1},
     opcodes::all::{OP_DROP, OP_NOP4},
     script::Builder,
@@ -48,7 +47,7 @@ pub fn calc_ctv_hash(outputs: &[TxOut], timeout: Option<u32>) -> [u8; 32] {
     hash.to_byte_array()
 }
 
-pub fn create_ctv_address(ctv_hash: [u8; 32]) -> Result<TaprootSpendInfo> {
+pub fn create_ctv_address(ctv_hash: [u8; 32]) -> Result<TaprootSpendInfo, Error> {
     let secp = Secp256k1::new();
 
     let key_pair = Keypair::new(&secp, &mut rand::thread_rng());
