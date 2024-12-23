@@ -85,9 +85,9 @@ Shoutout to **supertestnet**, **bennyhodl**, **glozow** and **Jeremy Rubin** for
 
 https://github.com/stutxo/simple_ctv/issues/1#issuecomment-2558013051
 
-- [spending wih 1p1c package, no P2A: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/466361f31966f2b4ce7f99d4a7e0390add5e0961438f84f978f8c013f05643e2)
+- [spending wih 1p1c package, no P2A: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/7a3768737ae4e20a556de6f475bfc74a13a8fda2287dbabbf6ffe8d7f5500de2)
 
-- [spending wih 1p1c package, using ctv output: Child Transaction on Mempool Space](https://mempool.space/signet/tx/e5f218aa1d3671f930d0aee69be1b44f15982050d226d65ca41d7b1f36cd5481)
+- [spending wih 1p1c package, using ctv output: Child Transaction on Mempool Space](https://mempool.space/signet/tx/3135e52ad30eb788d455549f4f09b55f887cdd2eb1660180b0e12f10af807cf5)
 
 
 ### Spending using a 1p1c Package
