@@ -43,7 +43,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 export BITCOIN_RPC_USER="rpc_username"
 export BITCOIN_RPC_PASS="rpc_password"
 export SIGNET_WALLET="signet wallet name"
-cargo run --features "signet"
+cargo run --no-default-features --features "signet"
 ```
 
 ### regtest
@@ -67,12 +67,7 @@ Shoutout to **supertestnet**, **bennyhodl**, **glozow** and **Jeremy Rubin** for
 
 ### Transaction Examples:
 
-### Minimum Possible Fees with No Extra Input
-
-- [orignal fee spend: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/8b0c09b92387ddbbea7ae2a8bca24e48a28551be4025c50ab74844ac8001077c)
-- [orignal fee spend: Child Transaction on Mempool Space](https://mempool.space/signet/tx/bf1e5af2e886a8f2072dcecad6cff1f736084983713bd32df606259e15bab67f)
-
-### Adding Extra Input to Cover the Fees
+### Adding Extra Input to Cover the Fees (The code is currenty setup to test this transaction type)
 
 - [bump fee with extra input: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/32f4f4e6165e7f8df9b9a762e11a6ca7f16087713e0e3e42352021e6bf3800e3)
 - [bump fee with extra input: Child Transaction on Mempool Space](https://mempool.space/signet/tx/9a3582f03b0ac39cff8ed024cf8f38e4fc4a1ee2ff216badf041bf4572c0d03b)
@@ -81,14 +76,21 @@ Shoutout to **supertestnet**, **bennyhodl**, **glozow** and **Jeremy Rubin** for
   <img src="/screenshots/zero-fee-ctv-spend-in&outs.png" alt="alt text">
   <img src="/screenshots/anchor-cpfp-spend.png" alt="alt text">
 
-### Bumping Fee by Deducting Fee from CTV Output
+### Minimum Possible Fees with No Extra Input
 
-For some reason if you still wanted to pay the fee with just the ctv ouput you could take it from the output value
+- [orignal fee spend: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/8b0c09b92387ddbbea7ae2a8bca24e48a28551be4025c50ab74844ac8001077c)
+- [orignal fee spend: Child Transaction on Mempool Space](https://mempool.space/signet/tx/bf1e5af2e886a8f2072dcecad6cff1f736084983713bd32df606259e15bab67f)
 
-- [bump fee without extra input or child transaction: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/86896275fb71d4e3b84d1edeeacb90f7c4ccf77ee3a29e66d7effff4bb0682fb)
+### Spending with no p2a using the ctv output
+
+https://github.com/stutxo/simple_ctv/issues/1#issuecomment-2558013051
+
+- [spending wih 1p1c package, no P2A: Parent Transaction on Mempool Space](https://mempool.space/signet/tx/466361f31966f2b4ce7f99d4a7e0390add5e0961438f84f978f8c013f05643e2)
+
+- [spending wih 1p1c package, using ctv output: Child Transaction on Mempool Space](https://mempool.space/signet/tx/e5f218aa1d3671f930d0aee69be1b44f15982050d226d65ca41d7b1f36cd5481)
 
 
-### Spending Using Just a 1p1c Package
+### Spending using a 1p1c Package
 
 https://x.com/1440000bytes/status/1868375944832156108
 

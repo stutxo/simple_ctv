@@ -32,6 +32,7 @@ impl NetworkConfig {
         #[cfg(feature = "signet")]
         {
             let wallet_name = env::var("SIGNET_WALLET").expect("SIGNET_WALLET env var not set");
+            println!("wallet name: {}", wallet_name);
             return Self {
                 network: Network::Signet,
                 port: "38332",
