@@ -14,7 +14,7 @@ Here is a simple example of spending a transaction from a CTV (CHECKTEMPLATEVERI
 4. [Transaction Examples](#transaction-examples)
     - [Minimum Possible Fees with No Extra Input](#minimum-possible-fees-with-no-extra-input)
     - [Adding Extra Input to Cover the Fees](#adding-extra-input-to-cover-the-fees)
-    - [Bumping Fee by Deducting Fee from CTV Output](#bumping-fee-by-deducting-fee-from-ctv-output)
+    - [Spending with no p2a using the ctv output](#spending-with-no-p2a-using-the-ctv-output)
     - [Spending Using Just a 1p1c Package](#spending-using-just-a-1p1c-package)
 
 
