@@ -3,7 +3,7 @@ use bitcoin::{
     hashes::{sha256, Hash},
     io::Error,
     key::{Keypair, Secp256k1},
-    opcodes::all::{OP_DROP, OP_NOP4},
+    opcodes::all::OP_NOP4,
     script::Builder,
     taproot::{LeafVersion, TaprootBuilder, TaprootSpendInfo},
     Opcode, ScriptBuf, Sequence, Transaction, TxOut, XOnlyPublicKey,
